@@ -41,7 +41,8 @@ services:
       - GF_DATABASE_USER=postgres
       - GF_DATABASE_PASSWORD=mysecretpassword
     volumes: 
-      - './config_grafana:/var/lib/grafana'
+      #- './config_grafana:/var/lib/grafana'
+      - '/etc/config_grafana:/var/lib/grafana'
 
   postgres:
     image: postgres:15
