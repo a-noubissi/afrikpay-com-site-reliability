@@ -1,0 +1,1 @@
+docker exec prometheus_afrikpay killall -HUP prometheus
