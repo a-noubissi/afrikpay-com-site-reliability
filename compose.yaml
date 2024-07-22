@@ -55,7 +55,7 @@ services:
 
   blackbox:
     image: prom/blackbox-exporter:v0.25.0
-    container_name: nodeexporter_afrikpay
+    container_name: blackboxexporter_afrikpay
     ports:
     - 9115:9115
     volumes:

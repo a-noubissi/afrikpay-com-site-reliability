@@ -14,7 +14,7 @@ scrape_configs:
     - source_labels: [__param_target]
       target_label: instance
     - target_label: __address__
-      replacement: nodeexporter_afrikpay:9115 
+      replacement: blackboxexporter_afrikpay:9115 
 
   static_configs:
     - targets: ['http://172.16.0.13:20028']

@@ -1,0 +1,15 @@
+scrape_configs:
+  - job_name: 'blackbox_probe_tcp'
+    scrape_interval: 30s
+    scrape_timeout: 15s
+    metrics_path: /probe
+    params:
+      module: [http_post_2xx]
+    static_configs:
+    - targets:
+      - http://35.204.26.22:30025/api/unsecure/partner/balance
+    relabel_configs:
+    - source_labels: [__address__]
+      target_label: __param_target
+    - target_label: __address__
+      replacement: blackboxexporter_afrikpay:9115 
