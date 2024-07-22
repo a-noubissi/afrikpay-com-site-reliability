@@ -1,42 +1,43 @@
-- job_name: 'adapters'
-  metrics_path: /probe
-  params:
-    module: [http_2xx]  # Specify the module you want to use for probing
-  static_configs:
-    - targets: ['http://172.16.0.13:20011']
-      labels:
-        service: "Douanes"
-    - targets: ['http://172.16.0.13:20010']
-      labels:
-        service: "Impôts"
-    - targets: ['http://172.16.0.13:20000']
-      labels:
-        service: "Prepaid"
-    - targets: ['http://172.16.0.13:20004']
-      labels:
-        service: "Postpaid"       
-    - targets: ['http://172.16.0.13:20001']
-      labels:
-        service: "Canal Manual"
-    - targets: ['http://172.16.0.13:20006']
-      labels:
-        service: "KCT"
-    - targets: ['http://172.16.0.13:20017']
-      labels:
-        service: "UDS"
-    - targets: ['http://172.16.0.13:20022']
-      labels:
-        service: "Yoomee Airtime"
-    - targets: ['http://172.16.0.13:20025']
-      labels:
-        service: "Orange Airtime"   
-  basic_auth:
-    username: user
-    password: password
-  relabel_configs:
-    - source_labels: [__address__]
-      target_label: __param_target
-    - source_labels: [__param_target]
-      target_label: instance
-    - target_label: __address__
-      replacement: nodeexporter_afrikpay:9115 
+scrape_configs:
+  - job_name: 'adapters'
+    metrics_path: /probe
+    params:
+      module: [http_2xx]  # Specify the module you want to use for probing
+    static_configs:
+      - targets: ['http://172.16.0.13:20011']
+        labels:
+          service: "Douanes"
+      - targets: ['http://172.16.0.13:20010']
+        labels:
+          service: "Impôts"
+      - targets: ['http://172.16.0.13:20000']
+        labels:
+          service: "Prepaid"
+      - targets: ['http://172.16.0.13:20004']
+        labels:
+          service: "Postpaid"       
+      - targets: ['http://172.16.0.13:20001']
+        labels:
+          service: "Canal Manual"
+      - targets: ['http://172.16.0.13:20006']
+        labels:
+          service: "KCT"
+      - targets: ['http://172.16.0.13:20017']
+        labels:
+          service: "UDS"
+      - targets: ['http://172.16.0.13:20022']
+        labels:
+          service: "Yoomee Airtime"
+      - targets: ['http://172.16.0.13:20025']
+        labels:
+          service: "Orange Airtime"   
+    basic_auth:
+      username: user
+      password: password
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: nodeexporter_afrikpay:9115 
