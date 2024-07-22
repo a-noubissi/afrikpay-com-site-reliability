@@ -41,7 +41,7 @@ services:
       - GF_DATABASE_USER=postgres
       - GF_DATABASE_PASSWORD=mysecretpassword
     volumes: 
-      - './config_grafana:/var/lib/grafana'
+      - '/var/www/sre/config_grafana:/var/lib/grafana'
 
   postgres:
     image: postgres:15
@@ -52,7 +52,7 @@ services:
     environment:
       - POSTGRES_PASSWORD=mysecretpassword
       - POSTGRES_USER=postgres
-      
+
   blackbox:
     image: prom/blackbox-exporter:v0.25.0
     container_name: nodeexporter_afrikpay
