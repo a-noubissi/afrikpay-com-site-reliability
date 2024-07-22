@@ -29,4 +29,4 @@ scrape_configs:
       - source_labels: [__param_target]
         target_label: instance
       - target_label: __address__
-        replacement: nodeexporter_afrikpay:9115  # Replace with the address where the Blackbox Exporter is running
+        replacement: blackboxexporter_afrikpay:9115  # Replace with the address where the Blackbox Exporter is running
