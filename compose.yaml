@@ -9,7 +9,7 @@ services:
       - "9090:9090"
     restart: unless-stopped
     volumes:
-      - ./config_prometheus/:/etc/prometheus/
+      - /var/www/sre/config_prometheus/:/etc/prometheus/
 
   prometheus-alertmanager-container:
     image: prom/alertmanager:v0.27.0
@@ -20,8 +20,8 @@ services:
     environment:
       - TZ=UTC
     volumes:
-      - ./config_alertmanager/alertmanager.yml:/etc/alertmanager/
-      - ./config_alertmanager/templates/:/etc/alertmanager/templates/
+      - /var/www/sre/config_alertmanager/alertmanager.yml:/etc/alertmanager/
+      - /var/www/sre/config_alertmanager/templates/:/etc/alertmanager/templates/
 
   grafana:
     image: grafana/grafana:10.0.0
@@ -48,4 +48,4 @@ services:
     ports:
     - 9115:9115
     volumes:
-    - ./config_prometheus/blackbox_exporter/blackbox.yml:/etc/blackbox/blackbox.yml
+    - /var/www/sre/config_prometheus/blackbox_exporter/blackbox.yml:/etc/blackbox/blackbox.yml
