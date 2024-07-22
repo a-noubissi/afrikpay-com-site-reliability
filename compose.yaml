@@ -25,6 +25,8 @@ services:
   grafana:
     image: grafana/grafana:10.0.0
     container_name: grafana_afrikpay
+    depends_on:
+      - postgres
     ports:
       - "3000:3000"
     restart: unless-stopped
@@ -33,14 +35,24 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=afrikpay-grafana
       - GF_SECURITY_ADMIN_EMAIL=a.noubissi@afrikpay.com
       - GF_DATABASE_TYPE=postgres
-      - GF_DATABASE_HOST=172.16.0.13
+      - GF_DATABASE_HOST=postrgres_afrikpay
       - GF_DATABASE_PORT=5432
-      - GF_DATABASE_NAME=grafana_prod_db
-      - GF_DATABASE_USER=grafana_prod_user
-      - GF_DATABASE_PASSWORD=fGWdEUb1lFKu0ACg
+      - GF_DATABASE_NAME=postgres
+      - GF_DATABASE_USER=postgres
+      - GF_DATABASE_PASSWORD=mysecretpassword
     volumes: 
-      - '/etc/config_grafana:/var/lib/grafana'
+      - './config_grafana:/var/lib/grafana'
 
+  postgres:
+    image: postgres:15
+    container_name: postrgres_afrikpay
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_USER=postgres
+      
   blackbox:
     image: prom/blackbox-exporter:v0.25.0
     container_name: nodeexporter_afrikpay
