@@ -20,8 +20,7 @@ services:
     environment:
       - TZ=UTC
     volumes:
-      - /var/www/sre/config_alertmanager/alertmanager.yml:/etc/alertmanager/
-      - /var/www/sre/config_alertmanager/templates/:/etc/alertmanager/templates/
+      - /var/www/sre/config_alertmanager/:/etc/alertmanager/
 
   grafana:
     image: grafana/grafana:10.0.0
@@ -48,4 +47,4 @@ services:
     ports:
     - 9115:9115
     volumes:
-    - /var/www/sre/config_prometheus/blackbox_exporter/blackbox.yml:/etc/blackbox/blackbox.yml
+    - /var/www/sre/config_prometheus/blackbox_exporter/:/etc/blackbox/
