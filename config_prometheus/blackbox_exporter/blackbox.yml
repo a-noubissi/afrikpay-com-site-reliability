@@ -1,0 +1,59 @@
+modules:
+  http_2xx:
+    prober: http
+    http:
+      preferred_ip_protocol: "ip4"
+  http_post_2xx:
+    prober: http
+    http:
+      method: POST
+  tcp_connect:
+    prober: tcp
+  pop3s_banner:
+    prober: tcp
+    tcp:
+      query_response:
+      - expect: "^+OK"
+      tls: true
+      tls_config:
+        insecure_skip_verify: false
+  grpc:
+    prober: grpc
+    grpc:
+      tls: true
+      preferred_ip_protocol: "ip4"
+  grpc_plain:
+    prober: grpc
+    grpc:
+      tls: false
+      service: "service1"
+  ssh_banner:
+    prober: tcp
+    tcp:
+      query_response:
+      - expect: "^SSH-2.0-"
+      - send: "SSH-2.0-blackbox-ssh-check"
+  irc_banner:
+    prober: tcp
+    tcp:
+      query_response:
+      - send: "NICK prober"
+      - send: "USER prober prober prober :prober"
+      - expect: "PING :([^ ]+)"
+        send: "PONG ${1}"
+      - expect: "^:[^ ]+ 001"
+  icmp:
+    prober: icmp
+  icmp_ttl5:
+    prober: icmp
+    timeout: 5s
+    icmp:
+      ttl: 5
+  http_2xx_with_header:
+    prober: http
+    timeout: 60s
+    http:
+      method: POST
+      headers:
+        Content-Type: 'text/xml'
+      body: '<?xml version="1.0"?><EXCHANGE><PI>AFP.041936785</PI><WK>AIsu2iNzKIFalPNAnSNtOZC4sWn7dO9kGTFirtOyWyd+5mMOcUoPefBh7mcJTitN+5vIiNWBsd4nWKspd1ERnEZ4KEwG3HlhDUMfv06CqasQ2LZaE1cwwJBz0PotS+2gZif6b7nriS7lDVHkMgS3ppUGkTpiyxYsmXwmBZGzmvG1I7Q3KjW6JxlFwC/Tdz++Dg6jBzcchFdS5z/CUJYbUQG/+07jj285b/4Mu26yjobZWhzVLj14vO3k7NI3D6jbrghQLdGw3vuKoNavAkjTN89P5GlPYy+T0Do0n6yjNe5j/fY3RLZtkUNMOvc/TMi0ar1spCRgcykd38QZFdtgPSyGwWhJ0TWDJiap2QuV/Tpk3WAU8Yz1hhJnZkPzTYXLCUl6eQ8JLQqEX9KcEBGoWEabUrKt6G/g0X10VYuwYePmNFjEnPcYnlyJufWsom2035Ktlsd75hGlX+36pEUhrlkjORPXvIWQwaVS+3nHzJCldexCqL5YqMDsV7WWNeLyN3V+bEfF5liba+m7LYWaf4hpUwGRQOerUsU/VrIDub5HNChRkEixMeU6NMXg2RgsGInDUmcGqBONL+oaFwZJIqTDZVXr1zcTdSSpP2GatdBYBKRI6ccC5KLFk02yx6FmK8dzD5OmrGkKeyVhbMlh+DrMKN4bRQgbA940</WK><SG>a3NK4RrD6yR6UgC8d4/PUsPKtkjmCtpfWKE0izj/J1Yhx1p/lNXKMojTCc/R8hlR8eELxmokSoyJy5UYwRuqhglMkYev798j9rA/v0ZWYRMhgWGoCbsFtTYgDQCu2ckvaa9aJtWn0KUbH4GY/QDRTWzW2JFE31vokReXxSz4tM1qm1sS3NFNsCQd9s5iqa6+uR+iJxAJPUzidq1YeYvyiYysFOxnirGsjb8CwONSHPdGPEvCDLZG7zbd74WKpCazM39n8O8RCqg2N2SoJKi0qtmzDFuDfwVOf0aqw8JbOOfuOSdGZmFdqh9r1Czy+qwodbZU6TmTZMeNwtEglBvOEQ==</SG><ED>RFSIWWyh38wZphCVvPpcoef1+HmxKYwJMHKwHEJDETCMzvH2LQbslDB7Wk+sVIS/SQbniQhvEYgg5EwEEMEJ6g0ErOEE05wqSSbZ3PA3eDkAloGyjg/RJG5OpaHuUuFiqxR2w/yJVhf9YaYo07Pj9oq83A7gxyIQd+hs0P75YDA0GW2OqJVUkfKgOA4BV4i91xcIQ3VLRuaUrSdxkHzDYv/fBGXEjZ18GiLR5O0yIUUGkm7rQVewot61pCcuLKFDnvyJKQDr7e51fZkrXLpYzJuEdXTIz8j0L15OPA9GS1wUfWamw1ZhkDLqWrlC1aXra8EwcVahSgfDRcNat606zQMKfE94zK0dHnPwsrPO72o=</ED></EXCHANGE>'

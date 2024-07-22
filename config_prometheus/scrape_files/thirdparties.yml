@@ -1,0 +1,31 @@
+- job_name: 'VPN'
+  honor_labels: true
+  metrics_path: '/federate'
+  params:
+    'match[]':
+      - '{job="Orange"}'
+  static_configs:
+    - targets:
+      - '34.255.70.36:9091'
+      
+- job_name: 'third_parties_apis'
+  metrics_path: /probe
+  params:
+    module: [http_2xx]  # Specify the module you want to use for probing
+  static_configs:
+    - targets: ['https://proxy.momoapi.mtn.com/']
+      labels: 
+        service: 'mtn-airtime'
+    - targets: ['https://apidist.gutouch.net/']
+      labels:
+        service: 'canal-auto'
+    - targets: [' https://eneopay.camlight.cm:8080/']
+      labels: 
+        service: 'eneo-postpaid'
+  relabel_configs:
+    - source_labels: [__address__]
+      target_label: __param_target
+    - source_labels: [__param_target]
+      target_label: instance
+    - target_label: __address__
+      replacement: nodeexporter_afrikpay:9115  # Replace with the address where the Blackbox Exporter is running

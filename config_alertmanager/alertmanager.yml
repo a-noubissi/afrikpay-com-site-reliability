@@ -1,6 +1,6 @@
 global:
   resolve_timeout: 1m
-  #slack_api_url: 
+  slack_api_url: 
   http_config:
     tls_config:
       insecure_skip_verify: true
@@ -14,9 +14,6 @@ templates:
 receivers:
 - name: 'slack-notifications'
   slack_configs:
-  - channel: '#build'
+  - channel: '#alert-monitoring'
     send_resolved: true
     text: '{{ template "slack.postgres.text" }}'
-    fields:
-    -  title: '{{ template "slack.postgres.text" }}'
-       value: '{{ template "slack.postgres.text" }}'
