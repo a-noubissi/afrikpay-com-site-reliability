@@ -26,8 +26,6 @@ services:
   grafana:
     image: grafana/grafana:10.0.0
     container_name: grafana_afrikpay
-    depends_on:
-      - postgres
     ports:
       - "3000:3000"
     restart: unless-stopped
