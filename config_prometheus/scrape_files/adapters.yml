@@ -17,7 +17,7 @@ scrape_configs:
       replacement: blackboxexporter_afrikpay:9115 
 
   static_configs:
-    - targets: ['http://172.16.0.13:20028']
+    - targets: ['http://172.16.0.13:20031']
       labels:
         service: "Camwater"
     - targets: ['http://172.16.0.13:20025']
