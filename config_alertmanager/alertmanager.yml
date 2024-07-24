@@ -16,4 +16,3 @@ receivers:
   slack_configs:
   - channel: '#alert-monitoring'
     send_resolved: true
-    text: '{{ template "slack.postgres.text" }}'

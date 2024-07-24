@@ -17,7 +17,7 @@ groups:
 - name: orange_airtime_alert
   rules:
   - alert: Orange_Airtime_Status
-    expr: probe_http_status_code{service="Orange"} == 200
+    expr: probe_http_status_code{service="Orange"} != 200
     for: 5s
     labels:
       severity: critical
