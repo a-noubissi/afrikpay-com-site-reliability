@@ -1,19 +1,19 @@
-# global:
-#   resolve_timeout: 1m
-#   slack_api_url: 
-#   http_config:
-#     tls_config:
-#       insecure_skip_verify: true
+global:
+  resolve_timeout: 1m
+  slack_api_url: 
+  http_config:
+    tls_config:
+      insecure_skip_verify: true
 
-# route:
-#   receiver: 'slack-notifications'
+route:
+  receiver: 'slack-notifications'
 
-# templates:
-# - '/etc/alertmanager/templates/alertmanager-template.tmpl'
+templates:
+- '/etc/alertmanager/templates/alertmanager-template.tmpl'
 
-# receivers:
-# - name: 'slack-notifications'
-#   slack_configs:
-#   - channel: '#alert-monitoring'
-#     send_resolved: true
-#     text: '{{ template "slack.postgres.text" }}'
+receivers:
+- name: 'slack-notifications'
+  slack_configs:
+  - channel: '#alert-monitoring'
+    send_resolved: true
+    text: '{{ template "slack.postgres.text" }}'

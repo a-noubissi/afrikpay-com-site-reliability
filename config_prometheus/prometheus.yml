@@ -10,7 +10,7 @@ alerting:
         - alertmanager_afrikpay:9093 
 
 rule_files:
-  - "/etc/prometheus/prometheus_rules.yml"
+  - "/etc/prometheus/rule_files/*.yml"
 
 scrape_config_files:
   - "/etc/prometheus/scrape_files/*.yml"

@@ -1,0 +1,145 @@
+groups:
+- name: example
+  rules:
+  - record: code:prometheus_http_requests_total:sum
+    expr: sum by (code) (prometheus_http_requests_total)
+
+- name: camwater_alert
+  rules:
+  - alert: Camwater_Status
+    expr: probe_http_status_code{service="Camwater"} != 200
+    for: 5s
+    labels:
+      severity: critical
+    annotations:
+      summary: "camwater is down"
+
+- name: orange_airtime_alert
+  rules:
+  - alert: Orange_Airtime_Status
+    expr: probe_http_status_code{service="Orange"} == 200
+    for: 5s
+    labels:
+      severity: critical
+    annotations:
+      summary: "orange_airtime is down"
+
+- name: kct_alert
+  rules:
+  - alert: KCT_Status
+    expr: probe_http_status_code{service="KCT"} != 200
+    for: 5s
+    labels:
+      severity: critical
+    annotations:
+      summary: "kct is down"
+
+- name: uds_alert
+  rules:
+  - alert: UDS_Status
+    expr: probe_http_status_code{service="UDS"} != 200
+    for: 5s
+    labels:
+      severity: critical
+    annotations:
+      summary: "uds is down"
+
+- name: canal_manual_alert
+  rules:
+  - alert: Canal Manual_Status
+    expr: probe_http_status_code{service="Canal Manual"} != 200
+    for: 5s
+    labels:
+      severity: critical
+    annotations:
+      summary: "canal_manual is down"
+
+- name: impot_alert
+  rules:
+  - alert: Impôts_Status
+    expr: probe_http_status_code{service="Impôts"} != 200
+    for: 5s
+    labels:
+      severity: critical
+    annotations:
+      summary: "impot is down"
+
+- name: eneo_prepaid_alert
+  rules:
+  - alert: Eneo_Prepaid_Status
+    expr: probe_http_status_code{service="Eneo Prepaid"} != 200
+    for: 5s
+    labels:
+      severity: critical
+    annotations:
+      summary: "eneo_prepaid is down"
+
+- name: eneo_postpaid_alert
+  rules:
+  - alert: Eneo_Postpaid_Status
+    expr: probe_http_status_code{service="Eneo Postpaid"} != 200
+    for: 5s
+    labels:
+      severity: critical
+    annotations:
+      summary: "eneo_postpaid is down"
+
+- name: eneo_postpaid_contract_alert
+  rules:
+  - alert: Eneo_Postpaid_Contract_Status
+    expr: probe_http_status_code{service="Eneo Postpaid Contract"} != 200
+    for: 5s
+    labels:
+      severity: critical
+    annotations:
+      summary: "eneo_postpaid_contract is down"
+
+- name: cnps_alert
+  rules:
+  - alert: CNPS_Status
+    expr: probe_http_status_code{service="CNPS"} != 200
+    for: 5s
+    labels:
+      severity: critical
+    annotations:
+      summary: "cnps is down"
+
+- name: douanes_alert
+  rules:
+  - alert: Douanes_Status
+    expr: probe_http_status_code{service="Douanes"} != 200
+    for: 5s
+    labels:
+      severity: critical
+    annotations:
+      summary: "douanes is down"
+
+- name: yoomee_airtime_alert
+  rules:
+  - alert: Yoomee_Airtime_Status
+    expr: probe_http_status_code{service="Yoomee"} != 200
+    for: 5s
+    labels:
+      severity: critical
+    annotations:
+      summary: "yoomee-airtime is down"
+
+- name: mtn_airtime_alert
+  rules:
+  - alert: MTN_Status
+    expr: probe_http_status_code{service="MTN"} != 200
+    for: 5s
+    labels:
+      severity: critical
+    annotations:
+      summary: "mtn_airtime is down"
+
+- name: camtel_airtime_alert
+  rules:
+  - alert: Camtel Airtime_Status
+    expr: probe_http_status_code{service="Camtel Airtime"} != 200
+    for: 5s
+    labels:
+      severity: critical
+    annotations:
+      summary: "camtel-airtime is down"
