@@ -15,7 +15,6 @@ rule_files:
 scrape_config_files:
   - "/etc/prometheus/scrape_files/*.yml"
 
-
 scrape_configs:
   - job_name: prometheus
     static_configs:
