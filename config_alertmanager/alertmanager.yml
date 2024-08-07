@@ -16,3 +16,6 @@ receivers:
   slack_configs:
   - channel: '#alert-monitoring'
     send_resolved: true
+    username: PLATFORM ALERT
+    icon_url: "https://apps.afrikpay.com/assets/icons/icon-512x512.png"
+    text: '{{ template "slack.postgres.text" . }}'

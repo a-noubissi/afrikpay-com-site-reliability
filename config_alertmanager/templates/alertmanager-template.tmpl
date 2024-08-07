@@ -1,1 +1,13 @@
-{{ define "slack.postgres.text" }} custom message {{ end }}
+{{ define "__subject" }}
+
+    {{ if eq .Status "firing" }} 
+        {{ (index .Alerts 0).Annotations.summary }}
+    {{ else}} 
+        {{ (index .Alerts 0).Labels.service }} is back up 
+    {{ end }}
+    
+{{ end }}
+
+{{ define "slack.postgres.text" }} {{ template "__subject" . }} {{ end }}
+
+{{ define "slack.default.title" }}{{ (index .Alerts 0).Labels.alertname }}{{ end }}
