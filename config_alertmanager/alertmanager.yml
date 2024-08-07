@@ -1,6 +1,6 @@
 global:
   resolve_timeout: 1m
-  slack_api_url: 
+  slack_api_url: $SLACK_$KEY
   http_config:
     tls_config:
       insecure_skip_verify: true

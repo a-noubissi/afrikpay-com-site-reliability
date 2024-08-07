@@ -87,7 +87,7 @@ groups:
 - name: eneo_postpaid_contract_alert
   rules:
   - alert: Eneo_Postpaid_Contract_Status
-    expr: probe_http_status_code{service="Eneo Postpaid Contract"} != 200
+    expr: probe_http_status_code{service="Eneo Postpaid Contract"} == 200
     for: 5s
     labels:
       severity: critical
