@@ -8,6 +8,6 @@
     
 {{ end }}
 
-{{ define "slack.postgres.text" }} {{ template "__subject" . }} {{ end }}
+{{ define "slack.notif.text" }} {{ template "__subject" . }} {{ end }}
 
 {{ define "slack.default.title" }}{{ (index .Alerts 0).Labels.alertname }}{{ end }}
