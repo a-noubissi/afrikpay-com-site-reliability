@@ -1,0 +1,20 @@
+groups:
+- name: orange_vpn
+  rules:
+  - alert: Orange_VPN_Status
+    expr: probe_success{job="orange_vpn"} != 1
+    for: 20s
+    labels:
+      severity: critical
+    annotations:
+      summary: "orange_vpn is down"
+
+- name: gimac_vpn
+  rules:
+  - alert: GIMAC_VPN_Status
+    expr: probe_success{job="gimac_vpn"} != 1
+    for: 20s
+    labels:
+      severity: critical
+    annotations:
+      summary: "gimac_vpn is down"

@@ -1,14 +1,5 @@
 scrape_configs:
-  - job_name: 'VPN'
-    honor_labels: true
-    metrics_path: '/federate'
-    params:
-      'match[]':
-        - '{job="Orange"}'
-    static_configs:
-      - targets:
-        - '34.255.70.36:9091'
-        
+
   - job_name: 'third_parties_apis'
     metrics_path: /probe
     params:
@@ -30,3 +21,28 @@ scrape_configs:
         target_label: instance
       - target_label: __address__
         replacement: blackboxexporter_afrikpay:9115  # Replace with the address where the Blackbox Exporter is running
+
+  - job_name: 'orange_vpn'
+    honor_labels: true
+    metrics_path: '/federate'
+    params:
+      'match[]':
+        - '{job="Orange"}'
+    static_configs:
+      - targets:
+        - '34.255.70.36:9091'
+
+  - job_name: 'gimac_vpn'
+    metrics_path: /probe
+    params:
+      module: [tcp_connect]  
+    static_configs:
+      - targets:
+        - 54.73.131.101:9115
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 54.73.131.101:9115
